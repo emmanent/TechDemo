@@ -4,7 +4,7 @@ using System.Collections;
 public class MovePlayer : MonoBehaviour {
     public bool controllable = true;
 
-    public float speed = 10.0f;
+    public float speed = 15.0f;
     public float jumpSpeed = 10.0f;
     public float gravity = 10.0f;
 
