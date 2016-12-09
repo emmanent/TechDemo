@@ -12,26 +12,17 @@ public class CollideWithPlayer : MonoBehaviour {
 
     void Update()
     {
-        print("berp");
+        
     }
 
-    void OnCollisionEnter(Collision c)
+    void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        // The force the object will be pushed
-        float force = 100;
-        print("hoi there!");
-        // Check the identity of the object the player has come in contact with
-        if (c.gameObject.tag == "ObjectPushed")
-        {
-            // Find the angle we have contacted the object, based on the collion point and the player
-            Vector3 dir = c.contacts[0].point - transform.position;
-            // We then get the opposite (-Vector3) and normalize it
-            dir = -dir.normalized;
-            // And finally we add force in the direction of dir and multiply it by force. 
-            // This will push back the object
-            c.gameObject.GetComponent<Rigidbody>().AddForce(dir * force);
-            print("push! :D");
-        }
+        float force = 10;
+        Rigidbody body = hit.collider.attachedRigidbody;
+        if (body == null || body.isKinematic) return;
+        if (hit.moveDirection.y < -0.3f) return;
+        Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+        body.velocity = pushDir * force;
 
     }
 }
