@@ -3,11 +3,23 @@ using System.Collections;
 
 public class CollideWithPlayer : MonoBehaviour {
 
+
+
+    void Start()
+    {
+
+    }
+
+    void Update()
+    {
+        print("berp");
+    }
+
     void OnCollisionEnter(Collision c)
     {
         // The force the object will be pushed
         float force = 100;
-
+        print("hoi there!");
         // Check the identity of the object the player has come in contact with
         if (c.gameObject.tag == "ObjectPushed")
         {
@@ -18,6 +30,7 @@ public class CollideWithPlayer : MonoBehaviour {
             // And finally we add force in the direction of dir and multiply it by force. 
             // This will push back the object
             c.gameObject.GetComponent<Rigidbody>().AddForce(dir * force);
+            print("push! :D");
         }
 
     }
