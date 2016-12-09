@@ -24,7 +24,10 @@ public class MovePlayer : MonoBehaviour {
             moveDir = transform.TransformDirection(moveDir) * speed;
 
             if (Input.GetButton("Jump"))
+            {
                 moveDir.y = jumpSpeed;
+            }
+                
         }
         moveDir.y -= gravity * Time.deltaTime;
         controller.Move(moveDir * Time.deltaTime);
